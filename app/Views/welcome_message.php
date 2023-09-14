@@ -220,9 +220,9 @@
 
     <div class="heroe">
 
-        <h1>Vidya Sinta Billkis <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
+        <h1>Nabillah Aisyah <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
 
-        <h2>2117051029</h2>
+        <h2>2117051036</h2>
 
     </div>
 
