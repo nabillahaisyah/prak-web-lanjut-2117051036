@@ -19,7 +19,8 @@
             <img src="<?=base_url('assets/img/billa.jpeg')?>" class = "profile-pic" >
         <div class="text">
             <p>Nama : <?= $nama ?></p>
-            <p>Kelas : <?= $kelas ?></p>
+            
+            <p>Kelas : <?= $id_kelas?></p>
             <p>NPM : <?= $npm ?></p>
             <br>
             <div class="social-media">

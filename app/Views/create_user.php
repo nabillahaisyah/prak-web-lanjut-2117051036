@@ -18,29 +18,48 @@
     <div class="container-create">
         <div class="profile-box">
         <div class = "profile-saya">
-            <h1> Input Data </h1>
+            <h1> Input Profile </h1>
             <br>
         <div class="text">
         <form action="<?=base_url('user/store')?>" method="post">
     <table>
         <tr>
             
-            <input type="text" class="form-control" placeholder="Nama" aria-label="Nama" aria-describedby="basic-addon1" name="nama">
+            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" placeholder="Nama" aria-label="Nama" aria-describedby="basic-addon1" name="nama" required>
+            <div class="invalid-feedback">
+                    <?= $validation->getError('nama') ?>
+            </div>
             
         </tr>
         <br>
         <tr>
-        <input type="text" class="form-control" placeholder="Kelas" aria-label="Kelas" aria-describedby="basic-addon1" name="kelas">
-
+        <!-- <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+        </div> -->
+        <select class="form-select" aria-label="Default select example" id="kelas" name="kelas" required placeholder="Kelas">
+                    <option selected>Kelas</option>
+                    <?php foreach($kelas as $item):?>
+                        <option value="<?=$item['id']?>"><?=$item['nama_kelas']?></option>
+                    <?php endforeach;?>
+                </select>
         </tr>
         <br>
         <tr>
-        <input type="text" class="form-control" placeholder="NPM" aria-label="NPM" aria-describedby="basic-addon1" name="npm">
-
+            <input type="text" class="form-control <?= ($validation->hasError('npm')) ? 'is-invalid' : ''; ?>" placeholder="NPM" aria-label="NPM" aria-describedby="basic-addon1" name="npm" required>
+            <div class="invalid-feedback">
+            <?= $validation->getError('npm') ?>
+            </div>
         </tr>
         <br>
         <tr>
-            <td><input class="btn btn-warning   " type="submit" value="Simpan"></td>
+            <td><div class="col text-center"> <button class="btn btn-warning" type="submit" value="Simpan">Simpan</button></div></td>
         </tr>
     </form>
 
