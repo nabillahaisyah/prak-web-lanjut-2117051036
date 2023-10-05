@@ -7,10 +7,25 @@ use App\Controllers\BaseController;
 
 class UserController extends BaseController
 {
+    public $userModel;
+    public $kelasModel;
+    public function __construct()
+    {
+        $this->userModel = new UserModel();
+        $this->kelasModel = new KelasModel();
+    }
+
+
     public function index()
     {
-        //
+        $data=[
+            'title' => 'List User',
+            'users' => $this->userModel->getUser(),
+        ];
+        return view('list_user', $data);
     }
+
+    
 
     public function profile($nama="", $kelas="", $npm="")
     {
@@ -24,24 +39,26 @@ class UserController extends BaseController
 
     public function create()
     {
-        $kelas = [
-            [
-                'id' => 1, 
-                'nama_kelas' => 'A'
-            ], 
-            [
-                'id' => 2, 
-                'nama_kelas' => 'B'
-            ], 
-            [
-                'id' => 3, 
-                'nama_kelas' => 'C'
-            ], 
-            [
-                'id' => 4, 
-                'nama_kelas' => 'D'
-            ], 
-        ];
+        $this->kelasModel = new KelasModel();
+        $kelas = $this->kelasModel->getKelas();
+        // $kelas = [
+        //     [
+        //         'id' => 1, 
+        //         'nama_kelas' => 'A'
+        //     ], 
+        //     [
+        //         'id' => 2, 
+        //         'nama_kelas' => 'B'
+        //     ], 
+        //     [
+        //         'id' => 3, 
+        //         'nama_kelas' => 'C'
+        //     ], 
+        //     [
+        //         'id' => 4, 
+        //         'nama_kelas' => 'D'
+        //     ], 
+        // ];
         
         if(session('validation')!=null){
             $validation = session('validation');
@@ -49,16 +66,23 @@ class UserController extends BaseController
         else{
             $validation = \Config\Services::validation();
         }
+        // $data = [
+        //     'kelas' => $kelas, 
+        //     'validation' => $validation
+        // ]; 
+
         $data = [
-            'kelas' => $kelas, 
-            'validation' => $validation
-        ]; 
+            'kelas' => $kelas,
+            'validation' => $validation,
+            'title' => 'Create User',
+            'kelas' => $kelas,
+        ];
         return view('create_user', $data);
     }
 
     public function store()
     {
-        $userModel = new UserModel();
+        $this->userModel = new UserModel();
         $nama = $this->request->getPost('nama');
         $kelas = $this->request->getPost('kelas');
         $npm = $this->request->getPost('npm');
@@ -90,16 +114,17 @@ class UserController extends BaseController
             'id_kelas' => $kelas,
             'validation' => $validation
         ];
-        $userModel = new UserModel();
-        $kelasModel = new KelasModel();
+        $this->userModel = new UserModel();
+        $this->kelasModel = new KelasModel();
 
-        $userModel->saveUser($data);
-        $data_new=[
-            'nama' => $nama,
-            'npm' => $npm,
-            'id_kelas' => $kelasModel->find($kelas)['nama_kelas'],
-            'validation' => $validation
-        ];
+        $this->userModel->saveUser($data);
+        return redirect()->to('/user');
+        // $data_new=[
+        //     'nama' => $nama,
+        //     'npm' => $npm,
+        //     'id_kelas' => $this->kelasModel->find($kelas)['nama_kelas'],
+        //     'validation' => $validation
+        // ];
     // $kelas=$this->kelasModel->find($this->request->getVar('kelas'));
     // if($kelas){
     //     $namaKelas=$kelas['nama_kelas'];
@@ -111,8 +136,11 @@ class UserController extends BaseController
     //     'id_kelas'=>$this->request->getVar('kelas'),
     // ];
 
-    return view('profile', $data_new);
-}
+    // return view('profile', $data_new);
+    }
+
+    
+
     }
 
 
