@@ -37,6 +37,16 @@ class UserController extends BaseController
         return view('profile', $data); 
     }
 
+    // public function profile($id)
+    // {
+    //     $user = $this->userModel->getUser($id);
+    //     $data = [
+    //         'title' => 'Profile',
+    //         'user' => $user
+    //     ];
+    //     return view('profile', $data);
+    // }
+
     public function create()
     {
         $this->kelasModel = new KelasModel();
@@ -83,6 +93,14 @@ class UserController extends BaseController
     public function store()
     {
         $this->userModel = new UserModel();
+
+        $path = 'assets/uploads/img/';
+        $foto = $this->request->getFile('foto');
+        $name = $foto->getRandomName();
+        if($foto->move($path,$name)){
+            $foto = base_url($path . $name);
+        }
+
         $nama = $this->request->getPost('nama');
         $kelas = $this->request->getPost('kelas');
         $npm = $this->request->getPost('npm');
@@ -112,6 +130,7 @@ class UserController extends BaseController
             'nama' => $nama,
             'npm' => $npm,
             'id_kelas' => $kelas,
+            'foto' => $foto,
             'validation' => $validation
         ];
         $this->userModel = new UserModel();
@@ -138,6 +157,18 @@ class UserController extends BaseController
 
     // return view('profile', $data_new);
     }
+
+    public function show($id){
+        $user = $this->userModel->getUser($id);
+
+        $data = [
+            'title' => 'Profile',
+            'user' => $user
+        ];
+        return view('profile', $data);
+    }
+
+
 
     
 

@@ -24,8 +24,18 @@
             <h1> Input Profile </h1>
             <br>
         <div class="text">
-        <form action="<?=base_url('user/store')?>" method="post">
+        <form action="<?=base_url('user/store')?>" method="post" enctype="multipart/form-data">
     <table>
+        <tr>
+            
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <label for="label-foto">
+                <input type="file" class="form-control" id="foto" placeholder="Nama" aria-label="Nama" aria-describedby="basic-addon1" name="foto">
+                </label>
+            </div>
+        </div>
+        </tr>
         <tr>
             
             <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" placeholder="Nama" aria-label="Nama" aria-describedby="basic-addon1" name="nama" required>
