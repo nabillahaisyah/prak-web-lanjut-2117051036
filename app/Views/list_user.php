@@ -9,6 +9,9 @@
         </div>
     </div>
     <div class="table-box">
+    <div class="tambah-data-box">
+        <a class="btn btn-success" href="<?=base_url('/user/create')?>">Tambah</a>
+    </div>
     <table class="table1">
         <thead>
             <tr>
@@ -32,8 +35,11 @@
                 <td><?= $user['nama']?></td>
                 <td><?= $user['npm']?></td>
                 <td><?= $user['nama_kelas']?></td>
-                <td><button type="button" class="btn btn-warning">Edit</button>
-                <button type="button" class="btn btn-danger">Hapus</button>
+                
+                <td>
+                    <a href="<?= base_url('user/' . $user['id'])?>" class="btn btn-primary">Detail</a>
+                    <button type="button" class="btn btn-warning">Edit</button>
+                    <button type="button" class="btn btn-danger">Hapus</button>
                 </td>
             </tr>
             <?php

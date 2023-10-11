@@ -16,24 +16,13 @@
         <div class="profile-box">
         <div class = "profile-saya">
             <h1> My Profile </h1>
-            <img src="<?=base_url('assets/img/billa.jpeg')?>" class = "profile-pic" >
+            <img src="<?= $user['foto'] ?? 'assets/img/default-foto.png'?>" class = "profile-pic" >
         <div class="text">
-            <p>Nama : <?= $nama ?></p>
+            <p>Nama : <?= $user['nama'] ?></p>
             
-            <p>Kelas : <?= $id_kelas?></p>
-            <p>NPM : <?= $npm ?></p>
+            <p>Kelas : <?= $user['nama_kelas']?></p>
+            <p>NPM : <?= $user['npm']?></p>
             <br>
-            <div class="social-media">
-                <a href="https://instagram.com/nabillahasyh">
-                    <img src="<?=base_url('assets/img/instagram.png')?>" class ="instagram-icon">
-                </a>
-                <a href="https://youtube.com/@nabillahaisyah1840">
-                    <img src="<?=base_url('assets/img/youtube.png')?>" class ="youtube-icon">
-                </a>
-                <a href="https://github.com/nabillahaisyah">
-                    <img src="<?=base_url('assets/img/github.png')?>" class ="github-icon">
-                </a>
-            </div>
 
         </div>
 
