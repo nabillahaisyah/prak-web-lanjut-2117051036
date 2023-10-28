@@ -21,6 +21,7 @@
             <p>Nama : <?= $user['nama'] ?></p>
             
             <p>Kelas : <?= $user['nama_kelas']?></p>
+            <p>Jurusan : <?= $user['nama_jurusan']?></p>
             <p>NPM : <?= $user['npm']?></p>
             <br>
 
