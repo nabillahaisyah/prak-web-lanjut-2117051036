@@ -24,8 +24,18 @@
             <h1> Input Profile </h1>
             <br>
         <div class="text">
-        <form action="<?=base_url('user/store')?>" method="post">
+        <form action="<?=base_url('user/store')?>" method="post" enctype="multipart/form-data">
     <table>
+        <tr>
+            
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <label for="label-foto">
+                <input type="file" class="form-control" id="foto" placeholder="Foto" aria-label="Foto" aria-describedby="basic-addon1" name="foto">
+                </label>
+            </div>
+        </div>
+        </tr>
         <tr>
             
             <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" placeholder="Nama" aria-label="Nama" aria-describedby="basic-addon1" name="nama" required>
@@ -36,20 +46,19 @@
         </tr>
         <br>
         <tr>
-        <!-- <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-        </div> -->
         <select class="form-select" aria-label="Default select example" id="kelas" name="kelas" required placeholder="Kelas">
                     <option selected>Kelas</option>
                     <?php foreach($kelas as $item):?>
                         <option value="<?=$item['id']?>"><?=$item['nama_kelas']?></option>
+                    <?php endforeach;?>
+                </select>
+        </tr>
+        <br>
+        <tr>
+        <select class="form-select" aria-label="Default select example" id="jurusan" name="jurusan" required placeholder="Jurusan">
+                    <option selected>Jurusan</option>
+                    <?php foreach($jurusan as $item):?>
+                        <option value="<?=$item['id']?>"><?=$item['nama_jurusan']?></option>
                     <?php endforeach;?>
                 </select>
         </tr>

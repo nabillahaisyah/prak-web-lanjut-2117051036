@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KelasModel extends Model
+class JurusanModel extends Model
 {
     protected $DBGroup          = 'default';
-    protected $table            = 'kelas';
+    protected $table            = 'jurusan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama_kelas'];
+    protected $allowedFields    = ['nama_jurusan'];
 
     // Dates
     protected $useTimestamps = true;
@@ -22,26 +22,26 @@ class KelasModel extends Model
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-    // public function getKelas(){
+    // public function getJurusan(){
     //     return $this->findAll();
     // }
 
-    public function saveKelas($data){
+    public function saveJurusan($data){
         $this->insert($data);
     }
 
-    public function getKelas($id = null){
+    public function getJurusan($id = null){
         if($id != null){
             return $this->find($id);
         }
         return $this->findAll();
     }
 
-    public function updateKelas($data, $id){
+    public function updateJurusan($data, $id){
         return $this->update($id, $data);
     }
 
-    public function deleteKelas($id){
+    public function deleteJurusan($id){
         return $this->delete($id);
     }
 
